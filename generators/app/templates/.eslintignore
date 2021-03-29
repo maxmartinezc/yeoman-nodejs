@@ -1,0 +1,15 @@
+**/*.spec.js
+**/spec/**
+
+#functional tests
+
+**/*.iso.js
+
+
+/node_modules
+
+/mochawesome-report
+
+.*
+
+coverage/

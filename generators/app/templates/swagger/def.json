@@ -1,0 +1,181 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "contact": {
+      "name": "<%= team %>"
+    },
+    "title": "<%= group %>-<%= name %>",
+    "version": "1.0.0"
+  },
+  "externalDocs": {
+    "description": "Confluence",
+    "url": "https://confluence.falabella.com/display/CER/<%= group %>-<%= name %>"
+  },
+  "paths": {
+    "/example/hello": {
+      "get": {
+        "tags": [
+          "hello"
+        ],
+        "summary": "",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/commerce"
+          },
+          {
+            "$ref": "#/components/parameters/country"
+          },
+          {
+            "$ref": "#/components/parameters/channel"
+          },
+          {
+            "$ref": "#/components/parameters/channelId"
+          },
+          {
+            "$ref": "#/components/parameters/clientIp"
+          },
+          {
+            "$ref": "#/components/parameters/sessionId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/text": {}
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/internal-server-error-response"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "parameters": {
+      "commerce": {
+        "name": "commerce",
+        "in": "header",
+        "schema": {
+          "type": "string"
+        },
+        "required": "true"
+      },
+      "country": {
+        "name": "country",
+        "in": "header",
+        "schema": {
+          "type": "string"
+        },
+        "required": "true"
+      },
+      "channel": {
+        "name": "channel",
+        "in": "header",
+        "schema": {
+          "type": "string"
+        },
+        "required": "true"
+      },
+      "sessionId": {
+        "name": "session-id",
+        "in": "header",
+        "schema": {
+          "type": "string"
+        },
+        "required": "true"
+      },
+      "clientIp": {
+        "name": "client-ip",
+        "in": "header",
+        "schema": {
+          "type": "string"
+        },
+        "required": "true"
+      },
+      "channelId": {
+        "name": "channel-id",
+        "in": "header",
+        "schema": {
+          "type": "string"
+        },
+        "required": "true"
+      }
+    },
+    "schemas": {
+      "error-response": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "integer"
+              },
+              "error": {
+                "type": "string",
+                "enum": [
+                  "SCHEMA_NOT_FOUND",
+                  "SCHEMA_NOT_VALID"
+                ]
+              },
+              "api": {
+                "type": "string",
+                "default": ""
+              },
+              "userMessage": {
+                "type": "string"
+              },
+              "techMessage": {
+                "type": "string"
+              }
+            }
+          },
+          "payload": {
+            "type": "string"
+          }
+        }
+      },
+      "internal-server-error-response": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "integer"
+              },
+              "error": {
+                "type": "string",
+                "enum": [
+                  "INTERNAL_SERVER_ERROR"
+                ]
+              },
+              "api": {
+                "type": "string",
+                "default": ""
+              },
+              "userMessage": {
+                "type": "string"
+              },
+              "techMessage": {
+                "type": "string"
+              }
+            }
+          },
+          "payload": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
